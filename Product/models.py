@@ -1,5 +1,6 @@
 from django.db import models
 from User.models import User
+from datetime import datetime
 # Create your models here.
 class Product(models.Model):
 
@@ -10,6 +11,7 @@ class Product(models.Model):
     purpose = models.CharField(max_length = 100)
     price = models.FloatField()
     description = models.CharField(max_length = 500)
+    createdDate = models.DateTimeField(auto_now_add = True, blank=True)
 
 class IncludedProducts(models.Model):
 
@@ -20,7 +22,7 @@ class IncludedProducts(models.Model):
 class Bill(models.Model):
 
     id = models.AutoField(primary_key=True)
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(auto_now_add = True, blank=True)
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     total = models.FloatField()
 
